@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import dbConnect from '@/app/lib/mongodb'
+import dbConnect from '@/app/lib/mongodb-simple'
 import Activity from '@/app/lib/models/Activity'
 import User from '@/app/lib/models/User'
 import Reward from '@/app/lib/models/Reward'
@@ -163,7 +163,7 @@ export async function GET(request: NextRequest) {
         activities: monthlyGrowth[1]
       },
       topPerformers,
-      recentActivities: recentActivities.map(activity => ({
+      recentActivities: recentActivities.map((activity: any) => ({
         id: activity._id.toString(),
         type: activity.type,
         title: activity.title,
