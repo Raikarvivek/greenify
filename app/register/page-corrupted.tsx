@@ -63,7 +63,7 @@ export default function RegisterPage() {
       } else {
         setError('Registration failed. Please try again.')
       }
-    } catch (error) {
+    } catch (error: any) {
       setError('An error occurred. Please try again.')
     } finally {
       setLoading(false)
@@ -104,25 +104,33 @@ export default function RegisterPage() {
                 <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">Create Account</h2>
                 <p className="text-lg text-gray-600 dark:text-gray-300">
                   Start your eco-journey with 50,000+ green warriors
+                </p>
               </div>
             </div>
 
             {/* Modern Registration Form */}
             <div className="relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white/20 dark:border-gray-700/50">
               <form className="space-y-6" onSubmit={handleSubmit}>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <User className="h-5 w-5 text-gray-400" />
-                        name="name"
-                        type="text"
-                        required
-                        className="block w-full pl-12 pr-4 py-4 bg-white/60 dark:bg-gray-700/60 backdrop-blur-lg border border-gray-200 dark:border-gray-600 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 text-lg transition-all duration-300"
-                        placeholder="Enter your full name"
-                        value={formData.name}
-                        onChange={handleChange}
-                      />
+                <div>
+                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                    Full Name
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <User className="h-5 w-5 text-gray-400" />
                     </div>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      className="block w-full pl-12 pr-4 py-4 bg-white/60 dark:bg-gray-700/60 backdrop-blur-lg border border-gray-200 dark:border-gray-600 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 text-lg transition-all duration-300"
+                      placeholder="Enter your full name"
+                      value={formData.name}
+                      onChange={handleChange}
+                    />
                   </div>
+                </div>
 
                   <div>
                     <label htmlFor="email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
@@ -208,7 +216,6 @@ export default function RegisterPage() {
                       </button>
                     </div>
                   </div>
-                </div>
 
                 <div className="mt-8">
                   <button
@@ -316,8 +323,14 @@ export default function RegisterPage() {
         </div>
       </div>
       
-      {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} onClose={removeToast} />
+      {error && (
+        <div className="fixed bottom-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg">
+          <div className="flex items-center space-x-2">
+            <AlertCircle className="h-5 w-5" />
+            <span>{error}</span>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

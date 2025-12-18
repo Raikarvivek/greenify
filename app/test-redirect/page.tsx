@@ -26,7 +26,7 @@ export default function TestRedirectPage() {
       } else {
         setTestResult('Admin login failed!')
       }
-    } catch (error) {
+    } catch (error:any) {
       setTestResult('Admin login error: ' + error.message)
     }
   }
@@ -48,7 +48,7 @@ export default function TestRedirectPage() {
       } else {
         setTestResult('User login failed!')
       }
-    } catch (error) {
+    } catch (error:any) {
       setTestResult('User login error: ' + error.message)
     }
   }

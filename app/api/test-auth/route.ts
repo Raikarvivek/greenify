@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
       passwordValid: isValid
     })
     
-  } catch (error) {
+  } catch (error : any) {
     console.error('Test auth error:', error)
     return NextResponse.json({ error: error.message }, { status: 500 })
   }

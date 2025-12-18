@@ -51,7 +51,7 @@ export async function GET(request: NextRequest) {
     const pages = Math.ceil(total / limit)
 
     // Transform vouchers for response
-    const transformedVouchers = vouchers.map(voucher => ({
+    const transformedVouchers = vouchers.map((voucher: any) => ({
       id: voucher._id.toString(),
       voucherCode: voucher.voucherCode,
       pointsSpent: voucher.pointsSpent,

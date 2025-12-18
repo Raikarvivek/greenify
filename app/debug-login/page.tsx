@@ -34,7 +34,7 @@ export default function DebugLoginPage() {
         console.log('Error response:', errorData)
         setResult({ success: false, error: errorData, status: response.status })
       }
-    } catch (error) {
+    } catch (error:any) {
       console.error('Fetch error:', error)
       setResult({ success: false, error: error.message, type: 'fetch_error' })
     } finally {
